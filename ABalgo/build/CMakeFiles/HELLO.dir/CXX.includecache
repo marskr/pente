@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/include/algorithm.h
+array
+-
+string
+-
+
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/algorithm.cpp
+iostream
+-
+vector
+-
+../include/algorithm.h
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/include/algorithm.h
+

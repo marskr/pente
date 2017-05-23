@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/HELLO.dir/src/algorithm.cpp.o  -o HELLO -rdynamic 

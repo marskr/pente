@@ -1,0 +1,3 @@
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles/edit_cache.dir
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles/rebuild_cache.dir
+/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles/hello.dir
