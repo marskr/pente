@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/pente.dir/main.cpp.o CMakeFiles/pente.dir/pente.cpp.o CMakeFiles/pente.dir/player.cpp.o  -o pente -rdynamic 
