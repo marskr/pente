@@ -16,7 +16,7 @@ bool Algorithm::isMovesLeft(char board[N][N])
 {
 	for (int i = 0; i<N; i++)
 		for (int j = 0; j<N; j++)
-			if (board[i][j]==Algorithm::empty)
+			if (board[i][j]==Algorithm::get_empty())
 				return true;
 	return false;
 }
@@ -57,10 +57,10 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 			for (int j = 0; j<N; j++)
 			{
 				// Check if cell is empty
-				if (board[i][j]==Algorithm::empty)
+				if (board[i][j]==Algorithm::get_empty())
 				{
 					// Make the move
-					board[i][j] = Algorithm::player;
+					board[i][j] = Algorithm::get_player();
 
 					// Call minimax recursively and choose
 					// the maximum value
@@ -70,7 +70,7 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 					best = max(best,Algorithm::minimax(board, depth+1, !isMax));
 
 					// Undo the move
-					board[i][j] = Algorithm::empty;
+					board[i][j] = Algorithm::get_empty();
 				}
 			}
 		}
@@ -88,17 +88,17 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 			for (int j = 0; j<N; j++)
 			{
 				// Check if cell is empty
-				if (board[i][j]==Algorithm::empty)
+				if (board[i][j]==Algorithm::get_empty())
 				{
 					// Make the move
-					board[i][j] = Algorithm::opponent;
+					board[i][j] = Algorithm::get_opponent();
 
 					// Call minimax recursively and choose
 					// the minimum value
 					best = min(best,Algorithm::minimax(board, depth+1, !isMax));
 
 					// Undo the move
-					board[i][j] = Algorithm::empty;
+					board[i][j] = Algorithm::get_empty();
 				}
 			}
 		}
@@ -140,10 +140,10 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 			for (int j = 0; j<N; j++)
 			{
 				// Check if cell is empty
-				if (board[i][j]==Algorithm::empty)
+				if (board[i][j]==Algorithm::get_empty())
 				{
 					// Make the move
-					board[i][j] = Algorithm::player;
+					board[i][j] = Algorithm::get_player();
 
 					// Call minimax recursively and choose
 					// the maximum value
@@ -153,7 +153,7 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 					alfa = max(alfa,Algorithm::alfabeta(board, depth+1, !isMax, alfa, beta));
 
 					// Undo the move
-					board[i][j] = Algorithm::empty;
+					board[i][j] = Algorithm::get_empty();
 
 				}
 				if (alfa >= beta)
@@ -174,10 +174,10 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 			for (int j = 0; j<N; j++)
 			{
 				// Check if cell is empty
-				if (board[i][j]==Algorithm::empty)
+				if (board[i][j]==Algorithm::get_empty())
 				{
 					// Make the move
-					board[i][j] = Algorithm::opponent;
+					board[i][j] = Algorithm::get_opponent();
 
 					// Call minimax recursively and choose
 					// the minimum value
@@ -186,7 +186,7 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 					beta = min(beta,Algorithm::alfabeta(board, depth+1, !isMax, alfa, beta));
 
 					// Undo the move
-					board[i][j] = Algorithm::empty;
+					board[i][j] = Algorithm::get_empty();
 					
 				}
 				if (alfa >= beta)
@@ -215,17 +215,17 @@ Move Algorithm::findBestMove(char board[N][N])
 		for (int j = 0; j<N; j++)
 		{
 			// Check if celll is empty
-			if (board[i][j]==Algorithm::empty)
+			if (board[i][j]==Algorithm::get_empty())
 			{
 				// Make the move
-				board[i][j] = Algorithm::player;
+				board[i][j] = Algorithm::get_player();
 
 				// compute evaluation function for this
 				// move.
 				int moveVal = Algorithm::abminimax(board, 0, false);
 
 				// Undo the move
-				board[i][j] = Algorithm::empty;
+				board[i][j] = Algorithm::get_empty();
 
 				// If the value of the current move is
 				// more than the best value, then update

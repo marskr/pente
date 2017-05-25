@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/marcin/Dokumenty/PSZT/pente/src/algorithm.cpp" "/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/src/algorithm.cpp.o"
-  "/home/marcin/Dokumenty/PSZT/pente/src/main.cpp" "/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/src/main.cpp.o"
-  "/home/marcin/Dokumenty/PSZT/pente/src/pente.cpp" "/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/src/pente.cpp.o"
-  "/home/marcin/Dokumenty/PSZT/pente/src/player.cpp" "/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/src/player.cpp.o"
-  "/home/marcin/Dokumenty/PSZT/pente/src/value.cpp" "/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/src/value.cpp.o"
+  "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/algorithm.cpp" "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/src/algorithm.cpp.o"
+  "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/main.cpp" "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/src/main.cpp.o"
+  "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/pente.cpp" "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/src/pente.cpp.o"
+  "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/player.cpp" "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/src/player.cpp.o"
+  "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/value.cpp" "/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/src/value.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/marcin/Dokumenty/PSZT/pente
+CMAKE_SOURCE_DIR = /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/marcin/Dokumenty/PSZT/pente/build
+CMAKE_BINARY_DIR = /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/pente.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/pente.dir/flags.make
 
 CMakeFiles/pente.dir/src/main.cpp.o: CMakeFiles/pente.dir/flags.make
 CMakeFiles/pente.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pente.dir/src/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/main.cpp.o -c /home/marcin/Dokumenty/PSZT/pente/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pente.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/main.cpp.o -c /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/main.cpp
 
 CMakeFiles/pente.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pente.dir/src/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente/src/main.cpp > CMakeFiles/pente.dir/src/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/main.cpp > CMakeFiles/pente.dir/src/main.cpp.i
 
 CMakeFiles/pente.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pente.dir/src/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente/src/main.cpp -o CMakeFiles/pente.dir/src/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/main.cpp -o CMakeFiles/pente.dir/src/main.cpp.s
 
 CMakeFiles/pente.dir/src/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/pente.dir/src/main.cpp.o.provides.build: CMakeFiles/pente.dir/src/mai
 
 CMakeFiles/pente.dir/src/pente.cpp.o: CMakeFiles/pente.dir/flags.make
 CMakeFiles/pente.dir/src/pente.cpp.o: ../src/pente.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pente.dir/src/pente.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/pente.cpp.o -c /home/marcin/Dokumenty/PSZT/pente/src/pente.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pente.dir/src/pente.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/pente.cpp.o -c /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/pente.cpp
 
 CMakeFiles/pente.dir/src/pente.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pente.dir/src/pente.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente/src/pente.cpp > CMakeFiles/pente.dir/src/pente.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/pente.cpp > CMakeFiles/pente.dir/src/pente.cpp.i
 
 CMakeFiles/pente.dir/src/pente.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pente.dir/src/pente.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente/src/pente.cpp -o CMakeFiles/pente.dir/src/pente.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/pente.cpp -o CMakeFiles/pente.dir/src/pente.cpp.s
 
 CMakeFiles/pente.dir/src/pente.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/pente.dir/src/pente.cpp.o.provides.build: CMakeFiles/pente.dir/src/pe
 
 CMakeFiles/pente.dir/src/player.cpp.o: CMakeFiles/pente.dir/flags.make
 CMakeFiles/pente.dir/src/player.cpp.o: ../src/player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pente.dir/src/player.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/player.cpp.o -c /home/marcin/Dokumenty/PSZT/pente/src/player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pente.dir/src/player.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/player.cpp.o -c /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/player.cpp
 
 CMakeFiles/pente.dir/src/player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pente.dir/src/player.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente/src/player.cpp > CMakeFiles/pente.dir/src/player.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/player.cpp > CMakeFiles/pente.dir/src/player.cpp.i
 
 CMakeFiles/pente.dir/src/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pente.dir/src/player.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente/src/player.cpp -o CMakeFiles/pente.dir/src/player.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/player.cpp -o CMakeFiles/pente.dir/src/player.cpp.s
 
 CMakeFiles/pente.dir/src/player.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/pente.dir/src/player.cpp.o.provides.build: CMakeFiles/pente.dir/src/p
 
 CMakeFiles/pente.dir/src/algorithm.cpp.o: CMakeFiles/pente.dir/flags.make
 CMakeFiles/pente.dir/src/algorithm.cpp.o: ../src/algorithm.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pente.dir/src/algorithm.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/algorithm.cpp.o -c /home/marcin/Dokumenty/PSZT/pente/src/algorithm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pente.dir/src/algorithm.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/algorithm.cpp.o -c /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/algorithm.cpp
 
 CMakeFiles/pente.dir/src/algorithm.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pente.dir/src/algorithm.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente/src/algorithm.cpp > CMakeFiles/pente.dir/src/algorithm.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/algorithm.cpp > CMakeFiles/pente.dir/src/algorithm.cpp.i
 
 CMakeFiles/pente.dir/src/algorithm.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pente.dir/src/algorithm.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente/src/algorithm.cpp -o CMakeFiles/pente.dir/src/algorithm.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/algorithm.cpp -o CMakeFiles/pente.dir/src/algorithm.cpp.s
 
 CMakeFiles/pente.dir/src/algorithm.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/pente.dir/src/algorithm.cpp.o.provides.build: CMakeFiles/pente.dir/sr
 
 CMakeFiles/pente.dir/src/value.cpp.o: CMakeFiles/pente.dir/flags.make
 CMakeFiles/pente.dir/src/value.cpp.o: ../src/value.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pente.dir/src/value.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/value.cpp.o -c /home/marcin/Dokumenty/PSZT/pente/src/value.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pente.dir/src/value.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pente.dir/src/value.cpp.o -c /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/value.cpp
 
 CMakeFiles/pente.dir/src/value.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pente.dir/src/value.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente/src/value.cpp > CMakeFiles/pente.dir/src/value.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/value.cpp > CMakeFiles/pente.dir/src/value.cpp.i
 
 CMakeFiles/pente.dir/src/value.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pente.dir/src/value.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente/src/value.cpp -o CMakeFiles/pente.dir/src/value.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/src/value.cpp -o CMakeFiles/pente.dir/src/value.cpp.s
 
 CMakeFiles/pente.dir/src/value.cpp.o.requires:
 
@@ -195,7 +195,7 @@ pente: CMakeFiles/pente.dir/src/algorithm.cpp.o
 pente: CMakeFiles/pente.dir/src/value.cpp.o
 pente: CMakeFiles/pente.dir/build.make
 pente: CMakeFiles/pente.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pente"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pente"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pente.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -216,6 +216,6 @@ CMakeFiles/pente.dir/clean:
 .PHONY : CMakeFiles/pente.dir/clean
 
 CMakeFiles/pente.dir/depend:
-	cd /home/marcin/Dokumenty/PSZT/pente/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/marcin/Dokumenty/PSZT/pente /home/marcin/Dokumenty/PSZT/pente /home/marcin/Dokumenty/PSZT/pente/build /home/marcin/Dokumenty/PSZT/pente/build /home/marcin/Dokumenty/PSZT/pente/build/CMakeFiles/pente.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build /home/marcin/Dokumenty/PSZT/pente+alfa_beta/pente-master/pente+alfa_beta/build/CMakeFiles/pente.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/pente.dir/depend
 
