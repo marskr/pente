@@ -154,13 +154,11 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
-
+					
+					if (alfa >= beta)
+						return beta; // beta cutoff
 				}
-				if (alfa >= beta)
-					break;
 			}
-			if (alfa >= beta)
-				break;
 		}
 		return alfa;
 	}
@@ -188,12 +186,10 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
 					
+					if (alfa >= beta)
+						return alfa; // alfa cutoff
 				}
-				if (alfa >= beta)
-					break;
 			}
-			if (alfa >= beta)
-				break;
 		}
 		return beta;
 	}
