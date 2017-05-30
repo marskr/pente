@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/marcin/Dokumenty/PSZT/pente/include/pente.h
+player.h
+/home/marcin/Dokumenty/PSZT/pente/include/player.h
+array
+-
+string
+-
+
+/home/marcin/Dokumenty/PSZT/pente/include/player.h
+stdexcept
+-
+
+/home/marcin/Dokumenty/PSZT/pente/src/main.cpp
+iostream
+-
+iomanip
+-
+assert.h
+-
+../include/pente.h
+/home/marcin/Dokumenty/PSZT/pente/include/pente.h
+
+/home/marcin/Dokumenty/PSZT/pente/src/pente.cpp
+../include/pente.h
+/home/marcin/Dokumenty/PSZT/pente/include/pente.h
+cmath
+-
+
+/home/marcin/Dokumenty/PSZT/pente/src/player.cpp
+../include/player.h
+/home/marcin/Dokumenty/PSZT/pente/include/player.h
+
