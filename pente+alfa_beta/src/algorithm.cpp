@@ -30,7 +30,8 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 {
 	Evaluation eval1;
 	int score = eval1.evaluate(board);
-
+	if(score<-10 || score>10)  
+ 		throw std::runtime_error("ERROR! The result (score) is out of boundaries!");
 	// If Maximizer has won the game return his/her
 	// evaluated score
 	if (score == 10)
@@ -64,10 +65,11 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 
 					// Call minimax recursively and choose
 					// the maximum value
-					//////////////////////std::cout << "\n DEPTH: " << depth << '\n';
 					if (depth >= 20)
 						return best;
 					best = max(best,Algorithm::minimax(board, depth+1, !isMax));
+					if(best<-10 || best>10)  
+            					throw std::runtime_error("ERROR! The result (score) is out of boundaries!");
 
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
@@ -97,6 +99,9 @@ int Algorithm::minimax(char board[N][N], int depth, bool isMax)
 					// the minimum value
 					best = min(best,Algorithm::minimax(board, depth+1, !isMax));
 
+					if(best<-10 || best>10)	  
+            					throw std::runtime_error("ERROR! The result (score) is out of boundaries!");
+
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
 				}
@@ -115,16 +120,23 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 {
 	Evaluation eval1;
 	int score = eval1.evaluate(board);
+	if (isMax)
+		alfa = score;
+	else
+		beta = score;
+	
+	if(score<-10 || score>10)  
+    throw std::runtime_error("ERROR! The result (score) is out of boundaries!");
 
 	// If Maximizer has won the game return his/her
 	// evaluated score
-	if (score == 10)
-		return score;
+	if (alfa == 10)
+		return alfa;
 
 	// If Minimizer has won the game return his/her
 	// evaluated score
-	if (score == -10)
-		return score;
+	if (beta == -10)
+		return beta;
 
 	// If there are no more moves and no winner then
 	// it is a tie
@@ -147,7 +159,6 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 
 					// Call minimax recursively and choose
 					// the maximum value
-					//////////////////////std::cout << "\n DEPTH: " << depth << '\n';
 					if (depth >= 20)
 						return alfa;
 					alfa = max(alfa,Algorithm::alfabeta(board, depth+1, !isMax, alfa, beta));
@@ -155,12 +166,13 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
 
+         	if(alfa<-10 || alfa>10)  
+            throw std::runtime_error("ERROR! The result (alfa) is out of boundaries!");
+									
+					if (alfa>=beta)
+						return beta; // beta cutoff
 				}
-				if (alfa >= beta)
-					break;
 			}
-			if (alfa >= beta)
-				break;
 		}
 		return alfa;
 	}
@@ -188,12 +200,13 @@ int Algorithm::alfabeta(char board[N][N], int depth, bool isMax, int alfa, int b
 					// Undo the move
 					board[i][j] = Algorithm::get_empty();
 					
+         				if(beta<-10 || beta>10)  
+            					throw std::runtime_error("ERROR! The result (beta) is out of boundaries!");
+
+					if (alfa >= beta)
+						return alfa; // alfa cutoff
 				}
-				if (alfa >= beta)
-					break;
 			}
-			if (alfa >= beta)
-				break;
 		}
 		return beta;
 	}
@@ -230,7 +243,7 @@ Move Algorithm::findBestMove(char board[N][N])
 				// If the value of the current move is
 				// more than the best value, then update
 				// best/
-				if (moveVal > bestVal)
+				if (moveVal>bestVal)
 				{
 					bestMove.row = i;
 					bestMove.col = j;
