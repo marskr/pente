@@ -49,23 +49,119 @@ CMAKE_SOURCE_DIR = /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo
 CMAKE_BINARY_DIR = /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build
 
 # Include any dependencies generated for this target.
-include CMakeFiles/HELLO.dir/depend.make
+include CMakeFiles/hello.dir/depend.make
 
 # Include the progress variables for this target.
-include CMakeFiles/HELLO.dir/progress.make
+include CMakeFiles/hello.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include CMakeFiles/HELLO.dir/flags.make
+include CMakeFiles/hello.dir/flags.make
 
-CMakeFiles/HELLO.dir/requires:
+CMakeFiles/hello.dir/src/algorithm.cpp.o: CMakeFiles/hello.dir/flags.make
+CMakeFiles/hello.dir/src/algorithm.cpp.o: ../src/algorithm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/hello.dir/src/algorithm.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello.dir/src/algorithm.cpp.o -c /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/algorithm.cpp
 
-.PHONY : CMakeFiles/HELLO.dir/requires
+CMakeFiles/hello.dir/src/algorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello.dir/src/algorithm.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/algorithm.cpp > CMakeFiles/hello.dir/src/algorithm.cpp.i
 
-CMakeFiles/HELLO.dir/clean:
-	$(CMAKE_COMMAND) -P CMakeFiles/HELLO.dir/cmake_clean.cmake
-.PHONY : CMakeFiles/HELLO.dir/clean
+CMakeFiles/hello.dir/src/algorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello.dir/src/algorithm.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/algorithm.cpp -o CMakeFiles/hello.dir/src/algorithm.cpp.s
 
-CMakeFiles/HELLO.dir/depend:
-	cd /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles/HELLO.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : CMakeFiles/HELLO.dir/depend
+CMakeFiles/hello.dir/src/algorithm.cpp.o.requires:
+
+.PHONY : CMakeFiles/hello.dir/src/algorithm.cpp.o.requires
+
+CMakeFiles/hello.dir/src/algorithm.cpp.o.provides: CMakeFiles/hello.dir/src/algorithm.cpp.o.requires
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/algorithm.cpp.o.provides.build
+.PHONY : CMakeFiles/hello.dir/src/algorithm.cpp.o.provides
+
+CMakeFiles/hello.dir/src/algorithm.cpp.o.provides.build: CMakeFiles/hello.dir/src/algorithm.cpp.o
+
+
+CMakeFiles/hello.dir/src/value.cpp.o: CMakeFiles/hello.dir/flags.make
+CMakeFiles/hello.dir/src/value.cpp.o: ../src/value.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hello.dir/src/value.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello.dir/src/value.cpp.o -c /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/value.cpp
+
+CMakeFiles/hello.dir/src/value.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello.dir/src/value.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/value.cpp > CMakeFiles/hello.dir/src/value.cpp.i
+
+CMakeFiles/hello.dir/src/value.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello.dir/src/value.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/value.cpp -o CMakeFiles/hello.dir/src/value.cpp.s
+
+CMakeFiles/hello.dir/src/value.cpp.o.requires:
+
+.PHONY : CMakeFiles/hello.dir/src/value.cpp.o.requires
+
+CMakeFiles/hello.dir/src/value.cpp.o.provides: CMakeFiles/hello.dir/src/value.cpp.o.requires
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/value.cpp.o.provides.build
+.PHONY : CMakeFiles/hello.dir/src/value.cpp.o.provides
+
+CMakeFiles/hello.dir/src/value.cpp.o.provides.build: CMakeFiles/hello.dir/src/value.cpp.o
+
+
+CMakeFiles/hello.dir/src/main.cpp.o: CMakeFiles/hello.dir/flags.make
+CMakeFiles/hello.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/hello.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello.dir/src/main.cpp.o -c /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/main.cpp
+
+CMakeFiles/hello.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello.dir/src/main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/main.cpp > CMakeFiles/hello.dir/src/main.cpp.i
+
+CMakeFiles/hello.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello.dir/src/main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/src/main.cpp -o CMakeFiles/hello.dir/src/main.cpp.s
+
+CMakeFiles/hello.dir/src/main.cpp.o.requires:
+
+.PHONY : CMakeFiles/hello.dir/src/main.cpp.o.requires
+
+CMakeFiles/hello.dir/src/main.cpp.o.provides: CMakeFiles/hello.dir/src/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/src/main.cpp.o.provides.build
+.PHONY : CMakeFiles/hello.dir/src/main.cpp.o.provides
+
+CMakeFiles/hello.dir/src/main.cpp.o.provides.build: CMakeFiles/hello.dir/src/main.cpp.o
+
+
+# Object files for target hello
+hello_OBJECTS = \
+"CMakeFiles/hello.dir/src/algorithm.cpp.o" \
+"CMakeFiles/hello.dir/src/value.cpp.o" \
+"CMakeFiles/hello.dir/src/main.cpp.o"
+
+# External object files for target hello
+hello_EXTERNAL_OBJECTS =
+
+hello: CMakeFiles/hello.dir/src/algorithm.cpp.o
+hello: CMakeFiles/hello.dir/src/value.cpp.o
+hello: CMakeFiles/hello.dir/src/main.cpp.o
+hello: CMakeFiles/hello.dir/build.make
+hello: CMakeFiles/hello.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable hello"
+	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hello.dir/link.txt --verbose=$(VERBOSE)
+
+# Rule to build all files generated by this target.
+CMakeFiles/hello.dir/build: hello
+
+.PHONY : CMakeFiles/hello.dir/build
+
+CMakeFiles/hello.dir/requires: CMakeFiles/hello.dir/src/algorithm.cpp.o.requires
+CMakeFiles/hello.dir/requires: CMakeFiles/hello.dir/src/value.cpp.o.requires
+CMakeFiles/hello.dir/requires: CMakeFiles/hello.dir/src/main.cpp.o.requires
+
+.PHONY : CMakeFiles/hello.dir/requires
+
+CMakeFiles/hello.dir/clean:
+	$(CMAKE_COMMAND) -P CMakeFiles/hello.dir/cmake_clean.cmake
+.PHONY : CMakeFiles/hello.dir/clean
+
+CMakeFiles/hello.dir/depend:
+	cd /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build /home/marcin/Dokumenty/PSZT/alfa-beta/algoAB/ABalgo/build/CMakeFiles/hello.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : CMakeFiles/hello.dir/depend
 
