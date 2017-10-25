@@ -1,3 +1,0 @@
-/home/marcin/Dokumenty/PSZT/pente/src/CMakeFiles/edit_cache.dir
-/home/marcin/Dokumenty/PSZT/pente/src/CMakeFiles/rebuild_cache.dir
-/home/marcin/Dokumenty/PSZT/pente/src/CMakeFiles/pente.dir

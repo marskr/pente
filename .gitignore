@@ -34,3 +34,9 @@
 *.ttf
 *.png
 doxyfile
+
+# Build files
+*build
+
+# Qt files
+*.user
