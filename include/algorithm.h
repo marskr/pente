@@ -6,11 +6,6 @@
 
 #include "value.h"
 
-struct Move
-{
-	int row, col;
-};
-
 //BASIC CLASS FOR "EVALUATION"
 class Algorithm
 {

@@ -47,80 +47,59 @@ std::pair<float, Move> Algorithm::alfabeta(Pente &pente, PenteEvaluation& evalua
     if (!isMovesLeft(pente))
         return std::make_pair(0, move);
 
-    int one_low, one_high, two_low, two_high;
-    std::tie(one_low, one_high, two_low, two_high) = PenteEvaluation().getAreaOfCare(pente);
+    std::vector<Move> list_of_moves = PenteEvaluation().getLegalMoves(pente);
 
 	// If this maximizer's move (turn of player)
 	if (isMax)
 	{
-		// Traverse all cells
-        for (int i = one_low; i < one_high; i++)
-		{
-            for (int j = two_low; j < two_high; j++)
-			{
-				// Check if cell is empty
-				if (isMovesLeft(pente))
-				{
-				    if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
-                        continue;
-                    // Make the move
-                    pente.markCell(std::make_pair(i,j));
+        // Traverse all cells
+        for(const Move& current_move : list_of_moves)
+        {
+            pente.markCell(std::make_pair(current_move.row, current_move.col));
 
-                    double potential_alfa = alfabeta(pente, evaluation, depth-1, !isMax, alfa, beta, move).first;
-                    if(potential_alfa > alfa)
-                    {
-                        move.row = i;
-                        move.col = j;
+            double potential_alfa = alfabeta(pente, evaluation, depth-1, !isMax, alfa, beta, move).first;
+            if(potential_alfa > alfa)
+            {
+                move = current_move;
 
-                        alfa = potential_alfa;
-                    }
+                alfa = potential_alfa;
+            }
 
-                    pente.undoLastMove();
+            pente.undoLastMove();
 
-                    if (alfa>=beta)
-                    {
-                        return std::make_pair(alfa, move); // beta cutoff
-                    }
-				}
-			}
-		}
+            if (alfa>=beta)
+            {
+                return std::make_pair(alfa, move); // beta cutoff
+            }
+        }
+
         return std::make_pair(alfa, move);
 	}
 
 	// If this minimizer's move (turn of opponent)
 	else
 	{
-		// Traverse all cells
-        for (int i = one_low; i < one_high; i++)
-		{
-            for (int j = two_low; j < two_high; j++)
-			{
-				// Check if cell is empty
-				if (isMovesLeft(pente))
-				{
-				    if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
-                        continue;
-                    // Make the move
-                    pente.markCell(std::make_pair(i,j));
+        // Traverse all cells
+        for(const Move& current_move : list_of_moves)
+        {
+            pente.markCell(std::make_pair(current_move.row, current_move.col));
 
-                    double potential_beta = alfabeta(pente, evaluation, depth-1, !isMax, alfa, beta, move).first;
-                    if(potential_beta < beta)
-                    {
-                        move.row = i;
-                        move.col = j;
+            double potential_beta = alfabeta(pente, evaluation, depth-1, !isMax, alfa, beta, move).first;
+            if(potential_beta < beta)
+            {
+                move = current_move;
 
-                        beta = potential_beta;
-                    }
+                beta = potential_beta;
+            }
 
-                    pente.undoLastMove();
+            pente.undoLastMove();
 
-                    if (alfa >= beta)
-                    {
-                        return std::make_pair(beta, move); // alfa cutoff
-                    }
-				}
-			}
-		}
+            if (alfa>=beta)
+            {
+                return std::make_pair(beta, move); // alfa cutoff
+            }
+        }
+
         return std::make_pair(beta, move);
 	}
 }
