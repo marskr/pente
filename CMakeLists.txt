@@ -10,7 +10,6 @@ find_package(SFML 2 REQUIRED COMPONENTS graphics window system)
 set(SRC source/main.cpp
         source/pente.cpp
         source/player.cpp
-        source/additional_funcions.cpp
         source/algorithm.cpp
         source/timer.cpp
         source/value.cpp)

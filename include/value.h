@@ -7,6 +7,22 @@
 
 #include "pente.h"
 
+struct Move
+{
+    Move()
+    {
+
+    }
+
+    Move(int r, int c)
+    {
+        row = r;
+        col = c;
+    }
+
+    int row, col;
+};
+
 class PenteEvaluation
 {
 public:
@@ -20,7 +36,8 @@ public:
                     float player_pair_weigth = 1.0f, float opponent_pair_weigth = 1.0f);
     ~PenteEvaluation();
     float evaluate(const Pente& game_state);
-    std::tuple<int, int, int, int> getAreaOfCare(const Pente& game_state);
+    std::vector<Move> getLegalMoves(const Pente& game_state);
+
 
 
 private:
@@ -34,6 +51,7 @@ private:
                                         const Pente::field_type& direction,
                                         const PlayerType player);
 
+    std::tuple<int, int, int, int> getAreaOfCare(const Pente& game_state);
     std::tuple<int, int, int, int> getBordersForSet(const std::set<Pente::field_type>& cells);
 
     const Player::PlayerColours PLAYING_PLAYER_;

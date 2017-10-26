@@ -92,6 +92,27 @@ float PenteEvaluation::evaluate(const Pente &game_state)
     return evaluation;
 }
 
+std::vector<Move> PenteEvaluation::getLegalMoves(const Pente &game_state)
+{
+    std::vector<Move> list_of_moves;
+
+    int one_low, one_high, two_low, two_high;
+    std::tie(one_low, one_high, two_low, two_high) = getAreaOfCare(game_state);
+
+    for (int i = one_low; i < one_high; i++)
+    {
+        for (int j = two_low; j < two_high; j++)
+        {
+            if(game_state.getCellValue(std::make_pair(i ,j)) == Player::PlayerColours::NONE)
+            {
+                list_of_moves.push_back(Move(i, j));
+            }
+        }
+    }
+
+    return list_of_moves;
+}
+
 std::tuple<int, int, int, int> PenteEvaluation::getAreaOfCare(const Pente &game_state)
 {
     std::tuple<int, int, int, int> one = getBordersForSet(game_state.getWhiteCells());

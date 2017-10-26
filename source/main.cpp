@@ -8,7 +8,6 @@
 #include "../include/pente.h"
 #include "../include/algorithm.h"
 #include "../include/value.h"
-#include "../include/additional_functions.h"
 #include "../include/timer.h"
 
 #include <SFML/Graphics.hpp>
@@ -77,7 +76,7 @@ void drawPawns(Pente::board_type board, sf::RenderWindow& window,
                     window.draw(whitePawnSprite);
                     break;
                 default:
-                    throw std::invalid_argument("This colour " + intToString((int)(*in_it)) + " does not exist!");
+                    throw std::invalid_argument("This colour " + std::to_string((int)(*in_it)) + " does not exist!");
             }
             row++;
         }
@@ -142,10 +141,10 @@ void displayText(Pente& pente, sf::RenderWindow& window, sf::Text& text, bool is
         text.setPosition(10, 26);
         window.draw(text);
     }
-    text.setString("White player beat " + intToString(pente.getCapturedPairsOfPlayer(Player::PlayerColours::WHITE)) + " pairs.");
+    text.setString("White player beat " + std::to_string(pente.getCapturedPairsOfPlayer(Player::PlayerColours::WHITE)) + " pairs.");
     text.setPosition(220, 10);
     window.draw(text);
-    text.setString("Black player beat " + intToString(pente.getCapturedPairsOfPlayer(Player::PlayerColours::BLACK)) + " pairs.");
+    text.setString("Black player beat " + std::to_string(pente.getCapturedPairsOfPlayer(Player::PlayerColours::BLACK)) + " pairs.");
     text.setPosition(220, 45);
     window.draw(text);
     text.setString("Start new game : player vs player");
