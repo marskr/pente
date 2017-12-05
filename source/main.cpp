@@ -11,6 +11,8 @@
 #include "../include/additional_functions.h"
 #include "../include/timer.h"
 
+#include "../include/cuda/parallel_minmax.h"
+
 #include <SFML/Graphics.hpp>
 
 /* *********************************GAME CONTROLS********************************* */
@@ -191,6 +193,7 @@ Timer *Timer::s_instance = 0;
 int main() {
     // ------------------------------
     //// Pente game init
+    recursive(3);
     Pente pente;
     pente.initGame();
     std::chrono::time_point <std::chrono::system_clock> start, stop;
