@@ -4,6 +4,7 @@ project(pente)
 set (CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+set(CMAKE_BUILD_TYPE RELEASE)
 
 find_package(SFML 2 REQUIRED COMPONENTS graphics window system)
 
@@ -13,7 +14,8 @@ set(SRC source/main.cpp
         source/additional_funcions.cpp
         source/algorithm.cpp
         source/timer.cpp
-        source/value.cpp)
+        source/value.cpp
+        )
 
 
 ## Declare a C++ executable

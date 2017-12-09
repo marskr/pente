@@ -19,7 +19,7 @@ const float OPPONENTLINEWEIGHT = 1.0f;
 const float PLAYERPAIRWEIGHT = 20.0f;
 const float OPPONENTPAIRWEIGHT = 2.0f;
 
-const double TIME_CONTROLLER = 1.0;
+const double TIME_CONTROLLER = std::numeric_limits<double>::infinity();
 const int DEPTH_CONTROLLER = 10;
 
 /* FOR SECOND IA */
@@ -164,7 +164,7 @@ void displayText(Pente& pente, sf::RenderWindow& window, sf::Text& text, bool is
 
 void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
             Move& bestMove, bool& playerOneTurn) {
-    bestMove = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER);
+    bestMove = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALFABETA);
     pente.markCell(std::make_pair(bestMove.row, bestMove.col));
     playerOneTurn = true;
     std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(AI_MOVE_DELAY));
