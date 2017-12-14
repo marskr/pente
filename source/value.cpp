@@ -208,6 +208,10 @@ std::tuple<int, int, int, int> PenteEvaluation::getBordersForSet(const std::set<
         lower_second = two.first->second;
         upper_second = two.second->second;
     }
+    else
+    {
+        lower_first = lower_second = upper_first = upper_second = BoardSize / 2;
+    }
 
     return std::make_tuple(lower_first, upper_first, lower_second, upper_second);
 }

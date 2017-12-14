@@ -17,8 +17,9 @@ class Algorithm
 public:
 	enum class SearchType {
 		MINMAX = 0,
-		ALFABETA = 1
+                ALPHABETA = 1
 	};
+
     Algorithm(){}
     ~Algorithm(){}
     Move findBestMove(Pente& pente, PenteEvaluation& evaluation,
@@ -26,12 +27,12 @@ public:
 
 private:
     bool isMovesLeft(Pente& pente);
-    std::pair<float, Move> abminimax(Pente& pente, PenteEvaluation& evaluation,
-                                     int depth, bool isMax, Move move);
-	std::pair<float, Move> MinMaxSearch(Pente& pente, PenteEvaluation& evaluation,
-									int depth, bool is_max, Move move);
-    std::pair<float, Move> AlfaBetaSearch(Pente& pente, PenteEvaluation& evaluation,
-                                    int depth, bool is_max, float alfa, float beta, Move move);
+
+    std::pair<float, Move> minMaxSearch(Pente& pente, PenteEvaluation& evaluation,
+                                    int depth, bool is_max, Move move);
+
+    std::pair<float, Move> alphaBetaSearch(Pente& pente, PenteEvaluation& evaluation,
+                                    int depth, bool is_max, float alpha, float beta, Move move);
 
     std::chrono::time_point<std::chrono::system_clock> time_start_;
     std::chrono::duration<double> time_seconds_;

@@ -2,6 +2,8 @@
 #include <cmath>
 #include <limits>
 
+#include <omp.h>
+
 #include "../include/algorithm.h"
 
 // C++ program to find the next optimal move for
@@ -18,17 +20,82 @@ bool Algorithm::isMovesLeft(Pente &pente)
 // This is the minimax function. It considers all
 // the possible ways the game can go and returns
 // the value of the board
-// https://pl.wikipedia.org/wiki/Algorytm_alfa-beta
+// https://pl.wikipedia.org/wiki/Algorytm_alpha-beta
 // https://github.com/mcostalba/Stockfish/blob/master/src/search.cpp
-std::pair<float, Move> Algorithm::MinMaxSearch(Pente &pente, PenteEvaluation &evaluation,
+std::pair<float, Move> Algorithm::minMaxSearch(Pente &pente, PenteEvaluation &evaluation,
                                                int depth, bool is_max, Move move)
 {
-    return std::make_pair(0.0, move);
+    if (pente.getIsWon() ||
+        depth == 0 ||
+        (std::chrono::system_clock::now() - time_start_) > time_seconds_)
+    {
+        float score = evaluation.evaluate(pente);
+        return std::make_pair(score, move);
+    }
 
+    // If there are no more moves and no winner then
+    // it is a tie
+    if (!isMovesLeft(pente))
+        return std::make_pair(0, move);
+
+    int one_low, one_high, two_low, two_high;
+    std::tie(one_low, one_high, two_low, two_high) = PenteEvaluation().getAreaOfCare(pente);
+
+    double best_score;
+    if(is_max)
+    {
+        best_score = -std::numeric_limits<double>::infinity();
+    }
+    else
+    {
+        best_score = std::numeric_limits<double>::infinity();
+    }
+
+    // Traverse all cells
+    for (int i = one_low; i < one_high; i++)
+    {
+        for (int j = two_low; j < two_high; j++)
+        {
+            // Check if cell is empty
+            if (isMovesLeft(pente))
+            {
+                if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
+                    continue;
+                // Make the move
+                pente.markCell(std::make_pair(i,j));
+
+                double score = minMaxSearch(pente, evaluation, depth - 1, !is_max, move).first;
+
+                if(is_max)
+                {
+                    if(score > best_score)
+                    {
+                        move.row = i;
+                        move.col = j;
+
+                        best_score = score;
+                    }
+                }
+                else
+                {
+                    if(score < best_score)
+                    {
+                        move.row = i;
+                        move.col = j;
+
+                        best_score = score;
+                    }
+                }
+
+                pente.undoLastMove();
+            }
+        }
+    }
+    return std::make_pair(best_score, move);
 }
 
-std::pair<float, Move> Algorithm::AlfaBetaSearch(Pente &pente, PenteEvaluation& evaluation,
-                                                 int depth, bool is_max, float alfa, float beta, Move move)
+std::pair<float, Move> Algorithm::alphaBetaSearch(Pente &pente, PenteEvaluation& evaluation,
+                                                 int depth, bool is_max, float alpha, float beta, Move move)
 {
     //Move move;
 
@@ -48,79 +115,78 @@ std::pair<float, Move> Algorithm::AlfaBetaSearch(Pente &pente, PenteEvaluation& 
     int one_low, one_high, two_low, two_high;
     std::tie(one_low, one_high, two_low, two_high) = PenteEvaluation().getAreaOfCare(pente);
 
-	// If this maximizer's move (turn of player)
-	if (is_max)
-	{
-		// Traverse all cells
-        for (int i = one_low; i < one_high; i++)
-		{
-            for (int j = two_low; j < two_high; j++)
-			{
-				// Check if cell is empty
-				if (isMovesLeft(pente))
-				{
-				    if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
-                        continue;
-                    // Make the move
-                    pente.markCell(std::make_pair(i,j));
+    double best_score;
+    if(is_max)
+    {
+        best_score = -std::numeric_limits<double>::infinity();
+    }
+    else
+    {
+        best_score = std::numeric_limits<double>::infinity();
+    }
 
-                    double potential_alfa = AlfaBetaSearch(pente, evaluation, depth-1, !is_max, alfa, beta, move).first;
-                    if(potential_alfa > alfa)
+    // Traverse all cells
+    for (int i = one_low; i < one_high; i++)
+    {
+        for (int j = two_low; j < two_high; j++)
+        {
+            // Check if cell is empty
+            if (isMovesLeft(pente))
+            {
+                if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
+                    continue;
+                // Make the move
+                pente.markCell(std::make_pair(i,j));
+
+                double score = alphaBetaSearch(pente, evaluation, depth - 1, !is_max, alpha, beta, move).first;
+                if(is_max)
+                {
+                    if(score > alpha)
                     {
                         move.row = i;
                         move.col = j;
 
-                        alfa = potential_alfa;
+                        alpha = score;
                     }
-
-                    pente.undoLastMove();
-
-                    if (alfa>=beta)
-                    {
-                        return std::make_pair(alfa, move); // beta cutoff
-                    }
-				}
-			}
-		}
-        return std::make_pair(alfa, move);
-	}
-
-	// If this minimizer's move (turn of opponent)
-	else
-	{
-		// Traverse all cells
-        for (int i = one_low; i < one_high; i++)
-		{
-            for (int j = two_low; j < two_high; j++)
-			{
-				// Check if cell is empty
-				if (isMovesLeft(pente))
-				{
-				    if(pente.getCellValue(std::make_pair(i, j)) != Player::PlayerColours::NONE)
-                        continue;
-                    // Make the move
-                    pente.markCell(std::make_pair(i,j));
-
-                    double potential_beta = AlfaBetaSearch(pente, evaluation, depth-1, !is_max, alfa, beta, move).first;
-                    if(potential_beta < beta)
+                }
+                else
+                {
+                    if(score < beta)
                     {
                         move.row = i;
                         move.col = j;
 
-                        beta = potential_beta;
+                        beta = score;
                     }
+                }
 
-                    pente.undoLastMove();
+                pente.undoLastMove();
 
-                    if (alfa >= beta)
+                if (alpha >= beta)
+                {
+                    if(is_max)
                     {
-                        return std::make_pair(beta, move); // alfa cutoff
+                        best_score = alpha; // beta cutoff
                     }
-				}
-			}
-		}
-        return std::make_pair(beta, move);
-	}
+                    else
+                    {
+                        best_score = beta; // alpha cutoff
+                    }
+                    return std::make_pair(best_score, move);
+                }
+            }
+        }
+    }
+
+    if(is_max)
+    {
+        best_score = alpha;
+    }
+    else
+    {
+        best_score = beta;
+    }
+    return std::make_pair(best_score, move);
 }
 
 // This will return the best possible move for the player
@@ -133,18 +199,27 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
 	float best_val = -std::numeric_limits<float>::infinity();
     Move best_move = {0, 0};
 
+    std::cout << "Analyzing for depth: " << depth << std::endl;
+
+    double start_time = omp_get_wtime();
+
     switch(type)
     {
         case SearchType::MINMAX:
-            std::tie(best_val, best_move) = MinMaxSearch(pente, evaluation, depth, true, best_move);
+            std::cout << "The min max algorithm took: ";
+            std::tie(best_val, best_move) = minMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
-        case SearchType ::ALFABETA:
-            std::tie(best_val, best_move) = AlfaBetaSearch(pente, evaluation, depth, true,
+        case SearchType::ALPHABETA:
+            std::cout << "The alpha beta algorithm took: ";
+            std::tie(best_val, best_move) = alphaBetaSearch(pente, evaluation, depth, true,
                                                            -std::numeric_limits<float>::infinity(),
                                                            std::numeric_limits<float>::infinity(), best_move);
             break;
     }
+
+    double end_time = omp_get_wtime();
+    std::cout << (end_time - start_time) << " seconds" << std::endl;
 
 	return best_move;
 }
