@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <cmath>
 #include <string>
@@ -19,7 +20,7 @@ const float PLAYERPAIRWEIGHT = 20.0f;
 const float OPPONENTPAIRWEIGHT = 2.0f;
 
 const double TIME_CONTROLLER = std::numeric_limits<double>::infinity();
-const int DEPTH_CONTROLLER = 4;
+int DEPTH_CONTROLLER = 1;
 
 /* FOR SECOND IA */
 const float PLAYERLINEWEIGHT_2 = 4.0f;
@@ -34,6 +35,8 @@ const int TOP_MARGIN = 70;
 const int LEFT_MARGIN = 26;
 const int BOARD_SPACING = 36;
 const int PAWN_SIZE = 30;
+
+std::ofstream file_stream;
 
 void initializeTextures(sf::RenderWindow& window, sf::Texture& boardTexture, sf::Texture& whitePawnTexture, sf::Texture& blackPawnTexture) {
     if(!boardTexture.loadFromFile("gfx/board.png")) window.close();             // if texture loading failed -- exit
@@ -163,7 +166,31 @@ void displayText(Pente& pente, sf::RenderWindow& window, sf::Text& text, bool is
 
 void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
             Move& bestMove, bool& playerOneTurn) {
-    bestMove = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALPHABETA);
+    std::cout << "ANALYZING FOR DEPTH: " << DEPTH_CONTROLLER << std::endl;
+    file_stream << DEPTH_CONTROLLER << ";";
+    std::cout << "RUNNING MIN MAX" << std::endl;
+    Move bestMove1 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::MINMAX);
+    file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";";
+    int minmax_nodes = algo1.getLastNodesExplored();
+    std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
+    Move bestMove2 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::PARALLEL_MINMAX);
+    file_stream << algo1.getLastMoveTime() << ";" << minmax_nodes << ";";
+    std::cout << "RUNNING ALPHA BETA" << std::endl;
+    Move bestMove3 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALPHABETA);
+    file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";" << std::endl;
+
+    ++DEPTH_CONTROLLER;
+
+//    if(bestMove1 != bestMove2 || bestMove2 != bestMove3 || bestMove1 != bestMove3)
+//    {
+//        std::cout << "Minmax: " << bestMove1 << std::endl;
+//        std::cout << "Parallel minmax: " << bestMove2 << std::endl;
+//        std::cout << "Alphabeta: " << bestMove3 << std::endl;
+//        throw std::logic_error("Searches gave different results!");
+//    }
+
+    bestMove = bestMove1;
+//    std::cout << "Best move: " << bestMove << std::endl;
     pente.markCell(std::make_pair(bestMove.row, bestMove.col));
     playerOneTurn = true;
     std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(AI_MOVE_DELAY));
@@ -192,6 +219,7 @@ int main() {
     //// Pente game init
     Pente pente;
     pente.initGame();
+
     std::chrono::time_point <std::chrono::system_clock> start, stop;
 
     PenteEvaluation white_eval(Player::PlayerColours::WHITE,
@@ -201,6 +229,9 @@ int main() {
     PenteEvaluation black_eval(Player::PlayerColours::BLACK,
                                PLAYERLINEWEIGHT, OPPONENTLINEWEIGHT,
                                PLAYERPAIRWEIGHT, OPPONENTPAIRWEIGHT);
+
+    file_stream.open("Measurements.csv");
+    file_stream << "Depth;MinMaxTime[s];MinMaxNodes;ParallelMinMaxTime[s];ParallelMinMaxNodes;AlphaBetaTime[s];AlphaBetaNodes" << std::endl;
     // ------------------------------
     Algorithm algo1;
     Move bestMove;
@@ -239,7 +270,7 @@ int main() {
     // Configure text
     initializeText(window, text, font);
     // Game loop
-    while(window.isOpen()){
+    while(window.isOpen() && DEPTH_CONTROLLER < 8){
         // Handle events
         handleEvents(window, event, pente.getIsWon(), pente, row, column, playerOneTurn, isGameStarted, pente.getIsWon(), gameMode);
         // Handle mouse clicks
@@ -290,5 +321,7 @@ int main() {
         // Display it
         window.display();
     }
+
+    file_stream.close();
     return 0;
 }

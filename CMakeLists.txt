@@ -4,7 +4,7 @@ project(pente)
 set (CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-set(CMAKE_BUILD_TYPE DEBUG)
+set(CMAKE_BUILD_TYPE RELEASE)
 
 find_package(SFML 2 REQUIRED COMPONENTS graphics window system)
 find_package(OpenMP)
