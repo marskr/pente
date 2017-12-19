@@ -20,7 +20,8 @@ const float PLAYERPAIRWEIGHT = 20.0f;
 const float OPPONENTPAIRWEIGHT = 2.0f;
 
 const double TIME_CONTROLLER = std::numeric_limits<double>::infinity();
-int DEPTH_CONTROLLER = 1;
+int DEPTH_CONTROLLER = 4;
+int NUMBER_OF_THREADS;
 
 /* FOR SECOND IA */
 const float PLAYERLINEWEIGHT_2 = 4.0f;
@@ -166,20 +167,31 @@ void displayText(Pente& pente, sf::RenderWindow& window, sf::Text& text, bool is
 
 void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
             Move& bestMove, bool& playerOneTurn) {
-    std::cout << "ANALYZING FOR DEPTH: " << DEPTH_CONTROLLER << std::endl;
-    file_stream << DEPTH_CONTROLLER << ";";
-    std::cout << "RUNNING MIN MAX" << std::endl;
+//    std::cout << "RUNNING WITH: " << NUMBER_OF_THREADS << " THREADS" << std::endl;
+//    std::cout << "ANALYZING FOR DEPTH: " << DEPTH_CONTROLLER << std::endl;
+    file_stream << NUMBER_OF_THREADS << ";" << DEPTH_CONTROLLER << ";";
+//    std::cout << "RUNNING MIN MAX" << std::endl;
     Move bestMove1 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::MINMAX);
     file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";";
     int minmax_nodes = algo1.getLastNodesExplored();
-    std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
+//    std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
     Move bestMove2 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::PARALLEL_MINMAX);
     file_stream << algo1.getLastMoveTime() << ";" << minmax_nodes << ";";
-    std::cout << "RUNNING ALPHA BETA" << std::endl;
+//    std::cout << "RUNNING ALPHA BETA" << std::endl;
     Move bestMove3 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALPHABETA);
     file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";" << std::endl;
 
-    ++DEPTH_CONTROLLER;
+    std::cout << std::endl;
+
+//    if(DEPTH_CONTROLLER >= 5)
+//    {
+//        DEPTH_CONTROLLER = 1;
+//        ++NUMBER_OF_THREADS;
+//    }
+//    else
+//    {
+//        ++DEPTH_CONTROLLER;
+//    }
 
 //    if(bestMove1 != bestMove2 || bestMove2 != bestMove3 || bestMove1 != bestMove3)
 //    {
@@ -230,8 +242,9 @@ int main() {
                                PLAYERLINEWEIGHT, OPPONENTLINEWEIGHT,
                                PLAYERPAIRWEIGHT, OPPONENTPAIRWEIGHT);
 
-    file_stream.open("Measurements.csv");
-    file_stream << "Depth;MinMaxTime[s];MinMaxNodes;ParallelMinMaxTime[s];ParallelMinMaxNodes;AlphaBetaTime[s];AlphaBetaNodes" << std::endl;
+    NUMBER_OF_THREADS = 4;
+    file_stream.open("Measurements2.csv");
+    file_stream << "NumberOfThreads;Depth;MinMaxTime[s];MinMaxNodes;ParallelMinMaxTime[s];ParallelMinMaxNodes;AlphaBetaTime[s];AlphaBetaNodes" << std::endl;
     // ------------------------------
     Algorithm algo1;
     Move bestMove;
@@ -270,7 +283,7 @@ int main() {
     // Configure text
     initializeText(window, text, font);
     // Game loop
-    while(window.isOpen() && DEPTH_CONTROLLER < 8){
+    while(window.isOpen()){
         // Handle events
         handleEvents(window, event, pente.getIsWon(), pente, row, column, playerOneTurn, isGameStarted, pente.getIsWon(), gameMode);
         // Handle mouse clicks

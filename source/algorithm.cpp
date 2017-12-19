@@ -279,14 +279,18 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
     switch(type)
     {
         case SearchType::MINMAX:
+            std::cout << "Min max took: ";
             std::tie(best_val, best_move) = minMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
         case SearchType::PARALLEL_MINMAX:
+            std::cout << "Parallel min max took: ";
+            omp_set_num_threads(NUMBER_OF_THREADS);
             std::tie(best_val, best_move) = parallelMinMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
         case SearchType::ALPHABETA:
+            std::cout << "Alpha beta took: ";
             std::tie(best_val, best_move) = alphaBetaSearch(pente, evaluation, depth, true,
                                                            -std::numeric_limits<float>::infinity(),
                                                            std::numeric_limits<float>::infinity(), best_move);
@@ -295,6 +299,7 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
 
     double end_time = omp_get_wtime();
     last_move_time_ = end_time - start_time;
+    std::cout << last_move_time_ << " seconds." << std::endl;
 
 	return best_move;
 }

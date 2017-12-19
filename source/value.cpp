@@ -108,6 +108,7 @@ std::tuple<int, int, int, int> PenteEvaluation::getAreaOfCare(const Pente &game_
     std::get<3>(ret_value) = std::min(BoardSize - 1, std::get<3>(ret_value) + AreaOfCareExtend);
 
     return ret_value;
+//    std::make_tuple(0, 10, 0, 10);
 }
 
 std::vector<int> PenteEvaluation::checkForLinesByPlayerType(const Pente &game_state,

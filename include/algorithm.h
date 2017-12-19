@@ -9,6 +9,8 @@
 
 #include "value.h"
 
+extern int NUMBER_OF_THREADS;
+
 struct Move
 {
 	int row, col;
@@ -39,6 +41,7 @@ public:
     Algorithm()
     {
         omp_set_nested(0);
+        omp_set_dynamic(0);
     }
     ~Algorithm(){}
     Move findBestMove(Pente& pente, PenteEvaluation& evaluation,
