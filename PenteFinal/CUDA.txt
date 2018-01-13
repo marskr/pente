@@ -1,0 +1,5 @@
+http://supercomputingblog.com/cuda/cuda-tutorial-1-getting-started/
+https://mc.stanford.edu/cgi-bin/images/b/ba/M02_2.pdf
+https://devblogs.nvidia.com/parallelforall/how-access-global-memory-efficiently-cuda-c-kernels/
+http://www.cs.ucr.edu/~jiang/cs141/recur-tut.txt
+https://www.thanassis.space/cudarenderer-BVH.html#recursion

@@ -49,12 +49,14 @@
 		<Unit filename="include/algorithm.h" />
 		<Unit filename="include/pente.h" />
 		<Unit filename="include/player.h" />
+		<Unit filename="include/timer.h" />
 		<Unit filename="include/value.h" />
 		<Unit filename="source/additional_funcions.cpp" />
 		<Unit filename="source/algorithm.cpp" />
 		<Unit filename="source/main.cpp" />
 		<Unit filename="source/pente.cpp" />
 		<Unit filename="source/player.cpp" />
+		<Unit filename="source/timer.cpp" />
 		<Unit filename="source/value.cpp" />
 		<Extensions>
 			<code_completion />

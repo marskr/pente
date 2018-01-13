@@ -19,8 +19,8 @@ const float OPPONENTLINEWEIGHT = 1.0f;
 const float PLAYERPAIRWEIGHT = 20.0f;
 const float OPPONENTPAIRWEIGHT = 2.0f;
 
-const double TIME_CONTROLLER = 1.0;
-const int DEPTH_CONTROLLER = 10;
+const double TIME_CONTROLLER = 5.0;
+const int DEPTH_CONTROLLER = 3;
 
 /* FOR SECOND IA */
 const float PLAYERLINEWEIGHT_2 = 4.0f;
