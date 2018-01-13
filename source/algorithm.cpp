@@ -124,7 +124,7 @@ std::pair<float, Move> Algorithm::parallelMinMaxSearch(Pente pente, PenteEvaluat
     }
 
     // Traverse all cells
-    #pragma omp parallel for ordered collapse(2) firstprivate(pente)
+    #pragma omp parallel for collapse(2) firstprivate(pente)
     for (int i = one_low; i < one_high; i++)
     {
         for (int j = two_low; j < two_high; j++)
@@ -279,18 +279,18 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
     switch(type)
     {
         case SearchType::MINMAX:
-            std::cout << "Min max took: ";
+//            std::cout << "Min max took: ";
             std::tie(best_val, best_move) = minMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
         case SearchType::PARALLEL_MINMAX:
-            std::cout << "Parallel min max took: ";
+//            std::cout << "Parallel min max took: ";
             omp_set_num_threads(NUMBER_OF_THREADS);
             std::tie(best_val, best_move) = parallelMinMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
         case SearchType::ALPHABETA:
-            std::cout << "Alpha beta took: ";
+//            std::cout << "Alpha beta took: ";
             std::tie(best_val, best_move) = alphaBetaSearch(pente, evaluation, depth, true,
                                                            -std::numeric_limits<float>::infinity(),
                                                            std::numeric_limits<float>::infinity(), best_move);
@@ -299,7 +299,7 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
 
     double end_time = omp_get_wtime();
     last_move_time_ = end_time - start_time;
-    std::cout << last_move_time_ << " seconds." << std::endl;
+//    std::cout << last_move_time_ << " seconds." << std::endl;
 
 	return best_move;
 }

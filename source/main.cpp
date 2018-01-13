@@ -20,7 +20,7 @@ const float PLAYERPAIRWEIGHT = 20.0f;
 const float OPPONENTPAIRWEIGHT = 2.0f;
 
 const double TIME_CONTROLLER = std::numeric_limits<double>::infinity();
-int DEPTH_CONTROLLER = 4;
+int DEPTH_CONTROLLER = 1;
 int NUMBER_OF_THREADS;
 
 /* FOR SECOND IA */
@@ -167,31 +167,45 @@ void displayText(Pente& pente, sf::RenderWindow& window, sf::Text& text, bool is
 
 void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
             Move& bestMove, bool& playerOneTurn) {
-//    std::cout << "RUNNING WITH: " << NUMBER_OF_THREADS << " THREADS" << std::endl;
-//    std::cout << "ANALYZING FOR DEPTH: " << DEPTH_CONTROLLER << std::endl;
+    std::cout << "RUNNING WITH: " << NUMBER_OF_THREADS << " THREADS" << std::endl;
+    std::cout << "ANALYZING FOR DEPTH: " << DEPTH_CONTROLLER << std::endl;
     file_stream << NUMBER_OF_THREADS << ";" << DEPTH_CONTROLLER << ";";
-//    std::cout << "RUNNING MIN MAX" << std::endl;
-    Move bestMove1 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::MINMAX);
-    file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";";
+    if(NUMBER_OF_THREADS < 3)
+    {
+        std::cout << "RUNNING MIN MAX" << std::endl;
+        Move bestMove1 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::MINMAX);
+        file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";";
+    }
+    else
+    {
+        file_stream << 0.0 << ";" << 0 << ";";
+    }
     int minmax_nodes = algo1.getLastNodesExplored();
-//    std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
+    std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
     Move bestMove2 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::PARALLEL_MINMAX);
     file_stream << algo1.getLastMoveTime() << ";" << minmax_nodes << ";";
-//    std::cout << "RUNNING ALPHA BETA" << std::endl;
-    Move bestMove3 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALPHABETA);
-    file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";" << std::endl;
+    if(NUMBER_OF_THREADS < 3)
+    {
+        std::cout << "RUNNING ALPHA BETA" << std::endl;
+        Move bestMove3 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::ALPHABETA);
+        file_stream << algo1.getLastMoveTime() << ";" << algo1.getLastNodesExplored() << ";" << std::endl;
+    }
+    else
+    {
+        file_stream << 0.0 << ";" << 0 << ";" << std::endl;
+    }
 
     std::cout << std::endl;
 
-//    if(DEPTH_CONTROLLER >= 5)
-//    {
-//        DEPTH_CONTROLLER = 1;
-//        ++NUMBER_OF_THREADS;
-//    }
-//    else
-//    {
-//        ++DEPTH_CONTROLLER;
-//    }
+    if(DEPTH_CONTROLLER >= 5)
+    {
+        DEPTH_CONTROLLER = 1;
+        ++NUMBER_OF_THREADS;
+    }
+    else
+    {
+        ++DEPTH_CONTROLLER;
+    }
 
 //    if(bestMove1 != bestMove2 || bestMove2 != bestMove3 || bestMove1 != bestMove3)
 //    {
@@ -201,9 +215,9 @@ void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
 //        throw std::logic_error("Searches gave different results!");
 //    }
 
-    bestMove = bestMove1;
+    bestMove = bestMove2;
 //    std::cout << "Best move: " << bestMove << std::endl;
-    pente.markCell(std::make_pair(bestMove.row, bestMove.col));
+//    pente.markCell(std::make_pair(bestMove.row, bestMove.col));
     playerOneTurn = true;
     std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(AI_MOVE_DELAY));
 }
@@ -242,7 +256,7 @@ int main() {
                                PLAYERLINEWEIGHT, OPPONENTLINEWEIGHT,
                                PLAYERPAIRWEIGHT, OPPONENTPAIRWEIGHT);
 
-    NUMBER_OF_THREADS = 4;
+    NUMBER_OF_THREADS = 2;
     file_stream.open("Measurements2.csv");
     file_stream << "NumberOfThreads;Depth;MinMaxTime[s];MinMaxNodes;ParallelMinMaxTime[s];ParallelMinMaxNodes;AlphaBetaTime[s];AlphaBetaNodes" << std::endl;
     // ------------------------------
@@ -283,7 +297,7 @@ int main() {
     // Configure text
     initializeText(window, text, font);
     // Game loop
-    while(window.isOpen()){
+    while(window.isOpen() || NUMBER_OF_THREADS < 10){
         // Handle events
         handleEvents(window, event, pente.getIsWon(), pente, row, column, playerOneTurn, isGameStarted, pente.getIsWon(), gameMode);
         // Handle mouse clicks

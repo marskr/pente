@@ -94,21 +94,21 @@ float PenteEvaluation::evaluate(const Pente &game_state)
 
 std::tuple<int, int, int, int> PenteEvaluation::getAreaOfCare(const Pente &game_state)
 {
-    std::tuple<int, int, int, int> one = getBordersForSet(game_state.getWhiteCells());
-    std::tuple<int, int, int, int> two = getBordersForSet(game_state.getBlackCells());
+//    std::tuple<int, int, int, int> one = getBordersForSet(game_state.getWhiteCells());
+//    std::tuple<int, int, int, int> two = getBordersForSet(game_state.getBlackCells());
 
-    std::tuple<int, int, int, int> ret_value = std::make_tuple(std::min(std::get<0>(one), std::get<0>(two)),
-                                                               std::max(std::get<1>(one), std::get<1>(two)),
-                                                               std::min(std::get<2>(one), std::get<2>(two)),
-                                                               std::max(std::get<3>(one), std::get<3>(two)));
+//    std::tuple<int, int, int, int> ret_value = std::make_tuple(std::min(std::get<0>(one), std::get<0>(two)),
+//                                                               std::max(std::get<1>(one), std::get<1>(two)),
+//                                                               std::min(std::get<2>(one), std::get<2>(two)),
+//                                                               std::max(std::get<3>(one), std::get<3>(two)));
 
-    std::get<0>(ret_value) = std::max(0, std::get<0>(ret_value) - AreaOfCareExtend);
-    std::get<1>(ret_value) = std::min(BoardSize - 1, std::get<1>(ret_value) + AreaOfCareExtend);
-    std::get<2>(ret_value) = std::max(0, std::get<2>(ret_value) - AreaOfCareExtend);
-    std::get<3>(ret_value) = std::min(BoardSize - 1, std::get<3>(ret_value) + AreaOfCareExtend);
+//    std::get<0>(ret_value) = std::max(0, std::get<0>(ret_value) - AreaOfCareExtend);
+//    std::get<1>(ret_value) = std::min(BoardSize - 1, std::get<1>(ret_value) + AreaOfCareExtend);
+//    std::get<2>(ret_value) = std::max(0, std::get<2>(ret_value) - AreaOfCareExtend);
+//    std::get<3>(ret_value) = std::min(BoardSize - 1, std::get<3>(ret_value) + AreaOfCareExtend);
 
-    return ret_value;
-//    std::make_tuple(0, 10, 0, 10);
+//    return ret_value;
+    return std::make_tuple(0, 8, 0, 8);
 }
 
 std::vector<int> PenteEvaluation::checkForLinesByPlayerType(const Pente &game_state,
