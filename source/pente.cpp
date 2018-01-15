@@ -15,6 +15,136 @@ Pente::~Pente()
 
 }
 
+void Pente::saveToStream(std::ostream &stream)
+{
+    for(auto& row : board_)
+    {
+        for(auto& el : row)
+        {
+            stream << static_cast<int>(el) << " ";
+        }
+    }
+
+    stream << history_.size() << " ";
+    for(auto& hist_element : history_)
+    {
+        stream << hist_element.first.first << " ";
+        stream << hist_element.first.second << " ";
+
+        stream << hist_element.second.size() << " ";
+
+        for(auto& hist_element_element : hist_element.second)
+        {
+            stream << hist_element_element.first << " ";
+            stream << hist_element_element.second << " ";
+        }
+    }
+
+    for(auto& player : players_)
+    {
+        player.saveToStream(stream);
+    }
+
+    stream << white_cells_.size() << " ";
+    for(auto& white_cell : white_cells_)
+    {
+        stream << white_cell.first << " ";
+        stream << white_cell.second << " ";
+    }
+
+    stream << black_cells_.size() << " ";
+    for(auto& black_cell : black_cells_)
+    {
+        stream << black_cell.first << " ";
+        stream << black_cell.second << " ";
+    }
+
+    stream << static_cast<int>(current_player_) << " ";
+    stream << static_cast<int>(opposite_player_) << " ";
+
+    stream << is_initialized_ << " ";
+    stream << is_won_ << " ";
+}
+
+void Pente::loadFromStream(std::istream &stream)
+{
+    for(auto& row : board_)
+    {
+        for(auto& el : row)
+        {
+            int value;
+            stream >> value;
+            el = static_cast<Player::PlayerColours>(value);
+        }
+    }
+
+    history_.clear();
+
+    int history_size;
+    stream >> history_size;
+    for(int i = 0; i < history_size; i++)
+    {
+        field_type field;
+        stream >> field.first;
+        stream >> field.second;
+
+        int elements;
+        stream >> elements;
+        std::vector<field_type> vec(elements);
+
+        for(auto& hist_element_element : vec)
+        {
+            stream >> hist_element_element.first;
+            stream >> hist_element_element.second;
+        }
+
+        history_.emplace_back(field, vec);
+    }
+
+    for(auto& player : players_)
+    {
+        player.loadFromStream(stream);
+    }
+
+    white_cells_.clear();
+
+    int white_size;
+    stream >> white_size;
+    for(int i = 0; i < white_size; i++)
+    {
+        field_type field;
+        stream >> field.first;
+        stream >> field.second;
+
+        white_cells_.insert(field);
+    }
+
+
+    black_cells_.clear();
+
+    int black_size;
+    stream >> black_size;
+    for(int i = 0; i < black_size; i++)
+    {
+        field_type field;
+        stream >> field.first;
+        stream >> field.second;
+
+        black_cells_.insert(field);
+    }
+
+    int current_player;
+    stream >> current_player;
+    current_player_ = static_cast<Player::PlayerColours>(current_player);
+
+    int opposite_player;
+    stream >> opposite_player;
+    opposite_player_ = static_cast<Player::PlayerColours>(opposite_player);
+
+    stream >> is_initialized_;
+    stream >> is_won_;
+}
+
 void Pente::initGame()
 {
     // Initialize the board to NONE values

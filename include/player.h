@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <stdexcept>
+#include <iostream>
 
 class Player
 {
@@ -15,6 +16,9 @@ public:
 
     Player();
     ~Player();
+
+    void saveToStream(std::ostream& stream);
+    void loadFromStream(std::istream& stream);
     // Increment the number of opponent's pairs beaten by the player
     void incrementCapturedPairs();
     void decrementCapturedPairs();

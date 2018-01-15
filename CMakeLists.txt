@@ -4,7 +4,7 @@ project(pente)
 set (CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-set(CMAKE_BUILD_TYPE RELEASE)
+set(CMAKE_BUILD_TYPE DEBUG)
 
 find_package(SFML 2 REQUIRED COMPONENTS graphics window system)
 find_package(OpenMP)
@@ -13,16 +13,30 @@ if (OPENMP_FOUND)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-set(SRC source/main.cpp
-        source/pente.cpp
+#find_package(MPI REQUIRED)
+#add_definitions(-DOMPI_SKIP_MPICXX)
+
+set(SRC source/pente.cpp
         source/player.cpp
         source/algorithm.cpp
         source/timer.cpp
         source/value.cpp
         )
 
+include_directories(${SFML_INCLUDE_DIR}
+    #${MPI_INCLUDE_PATH}
+    )
 
 ## Declare a C++ executable
-add_executable(pente ${SRC})
-include_directories(${SFML_INCLUDE_DIR})
-target_link_libraries(pente ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+add_executable(pente source/main.cpp ${SRC})
+target_link_libraries(pente ${SFML_LIBRARIES} ${SFML_DEPENDENCIES}
+    #${MPI_C_LIBRARIES}
+    )
+
+#SET(CMAKE_C_COMPILER mpicc)
+#SET(CMAKE_CXX_COMPILER mpicxx)
+
+add_executable(pente_two source/main_two.cpp ${SRC})
+target_link_libraries(pente_two ${SFML_LIBRARIES} ${SFML_DEPENDENCIES}
+    #${MPI_C_LIBRARIES}
+    )

@@ -22,6 +22,20 @@ Player::~Player()
     number_of_players_--;
 }
 
+void Player::saveToStream(std::ostream &stream)
+{
+    stream << captured_pairs_ << " ";
+    stream << static_cast<int>(colour_) << " ";
+}
+
+void Player::loadFromStream(std::istream &stream)
+{
+    stream >> captured_pairs_;
+    int colour;
+    stream >> colour;
+    colour_ = static_cast<PlayerColours>(colour);
+}
+
 void Player::incrementCapturedPairs()
 {
     captured_pairs_++; // Here's amount of pairs, which were captured

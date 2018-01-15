@@ -33,9 +33,10 @@ class Algorithm
 {
 public:
 	enum class SearchType {
-		MINMAX = 0,
-        PARALLEL_MINMAX = 1,
-		ALPHABETA = 2
+            MINMAX = 0,
+            PARALLEL_MINMAX_LOCAL = 1,
+            PARALLEL_MINMAX_SHARED = 2,
+            ALPHABETA = 3
 	};
 
     Algorithm()
@@ -63,7 +64,10 @@ private:
     std::pair<float, Move> minMaxSearch(Pente& pente, PenteEvaluation& evaluation,
                                     int depth, bool is_max, Move move);
 
-    std::pair<float, Move> parallelMinMaxSearch(Pente pente, PenteEvaluation& evaluation,
+    std::pair<float, Move> parallelMinMaxLocalSearch(Pente pente, PenteEvaluation& evaluation,
+                                    int depth, bool is_max, Move move);
+
+    std::pair<float, Move> parallelMinMaxSharedSearch(Pente pente, PenteEvaluation& evaluation,
                                     int depth, bool is_max, Move move);
 
     std::pair<float, Move> alphaBetaSearch(Pente& pente, PenteEvaluation& evaluation,

@@ -6,6 +6,7 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <iostream>
 
 #include "player.h"
 
@@ -36,6 +37,9 @@ public:
 
     Pente();
     ~Pente();
+
+    void saveToStream(std::ostream &stream);
+    void loadFromStream(std::istream& stream);
 
     // Init the game. MUST BE to start
     void initGame();

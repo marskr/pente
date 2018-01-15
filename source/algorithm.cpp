@@ -95,7 +95,7 @@ std::pair<float, Move> Algorithm::minMaxSearch(Pente& pente, PenteEvaluation& ev
     return std::make_pair(best_score, move);
 }
 
-std::pair<float, Move> Algorithm::parallelMinMaxSearch(Pente pente, PenteEvaluation& evaluation,
+std::pair<float, Move> Algorithm::parallelMinMaxLocalSearch(Pente pente, PenteEvaluation& evaluation,
                                                   int depth, bool is_max, Move move)
 {
     if (pente.getIsWon() ||
@@ -160,6 +160,78 @@ std::pair<float, Move> Algorithm::parallelMinMaxSearch(Pente pente, PenteEvaluat
 
                             best_score = score;
                         }
+                    }
+                }
+
+                pente.undoLastMove();
+            }
+        }
+    }
+    return std::make_pair(best_score, move);
+
+}
+
+std::pair<float, Move> Algorithm::parallelMinMaxSharedSearch(Pente pente, PenteEvaluation &evaluation,
+                                                 int depth, bool is_max, Move move)
+{
+    if (pente.getIsWon() ||
+        depth == 0)
+    {
+        float score = evaluation.evaluate(pente);
+        return std::make_pair(score, move);
+    }
+
+    // If there are no more moves and no winner then
+    // it is a tie
+    if (!isMovesLeft(pente))
+        return std::make_pair(0, move);
+
+    int one_low, one_high, two_low, two_high;
+    std::tie(one_low, one_high, two_low, two_high) = PenteEvaluation().getAreaOfCare(pente);
+
+    double best_score;
+    if(is_max)
+    {
+        best_score = -std::numeric_limits<double>::infinity();
+    }
+    else
+    {
+        best_score = std::numeric_limits<double>::infinity();
+    }
+
+    // Traverse all cells
+    for (int i = one_low; i < one_high; i++)
+    {
+        for (int j = two_low; j < two_high; j++)
+        {
+            // Check if cell is empty
+            if (isMovesLeft(pente) &&
+                    pente.getCellValue(std::make_pair(i, j)) == Player::PlayerColours::NONE)
+            {
+                // Make the move
+                pente.markCell(std::make_pair(i,j));
+
+
+                double score = minMaxSearch(pente, evaluation, depth - 1, !is_max, move).first;
+
+                if(is_max)
+                {
+                    if(score > best_score)
+                    {
+                        move.row = i;
+                        move.col = j;
+
+                        best_score = score;
+                    }
+                }
+                else
+                {
+                    if(score < best_score)
+                    {
+                        move.row = i;
+                        move.col = j;
+
+                        best_score = score;
                     }
                 }
 
@@ -283,10 +355,10 @@ Move Algorithm::findBestMove(Pente &pente, PenteEvaluation& evaluation,
             std::tie(best_val, best_move) = minMaxSearch(pente, evaluation, depth, true, best_move);
             break;
 
-        case SearchType::PARALLEL_MINMAX:
+        case SearchType::PARALLEL_MINMAX_LOCAL:
 //            std::cout << "Parallel min max took: ";
             omp_set_num_threads(NUMBER_OF_THREADS);
-            std::tie(best_val, best_move) = parallelMinMaxSearch(pente, evaluation, depth, true, best_move);
+            std::tie(best_val, best_move) = parallelMinMaxLocalSearch(pente, evaluation, depth, true, best_move);
             break;
 
         case SearchType::ALPHABETA:

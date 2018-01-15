@@ -182,7 +182,7 @@ void AImove(Pente& pente, PenteEvaluation& eval, Algorithm& algo1,
     }
     int minmax_nodes = algo1.getLastNodesExplored();
     std::cout << "RUNNING PARALLEL MIN MAX" << std::endl;
-    Move bestMove2 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::PARALLEL_MINMAX);
+    Move bestMove2 = algo1.findBestMove(pente, eval, DEPTH_CONTROLLER, TIME_CONTROLLER, Algorithm::SearchType::PARALLEL_MINMAX_LOCAL);
     file_stream << algo1.getLastMoveTime() << ";" << minmax_nodes << ";";
     if(NUMBER_OF_THREADS < 3)
     {
